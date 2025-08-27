@@ -3,6 +3,7 @@
 namespace Sujon\Smsbd;
 
 use Sujon\Smsbd\Gateways\ArenaGateway;
+use Sujon\Smsbd\Gateways\TwilloGateway;
 use Sujon\Smsbd\Gateways\ElitbuzzGateway;
 use Sujon\Smsbd\Gateways\GatewayInterface;
 
@@ -20,6 +21,9 @@ class SMSService {
                 break;
             case 'elitbuzz':
                 $this->gateway = new ElitbuzzGateway();
+                break;
+            case 'twilio':
+                $this->gateway = new TwilloGateway();
                 break;
             default:
                 throw new \Exception("SMS Gateway [$gateway] not supported.");

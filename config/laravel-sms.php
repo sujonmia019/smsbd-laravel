@@ -18,7 +18,8 @@
         ],
 
         'twilio' => [
-            'api_key'   => env('TWILIO_API_KEY'),
+            'sid'       => env('TWILIO_SID'),
+            'token'     => env('TWILIO_TOKEN'),
             'sender_id' => env('TWILIO_SENDER_ID'),
         ],
 
