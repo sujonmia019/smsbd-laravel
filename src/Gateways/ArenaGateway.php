@@ -8,14 +8,14 @@ class ArenaGateway implements GatewayInterface{
 
     protected $aCode;
     protected $apiKey;
-    protected $maskingName;
+    protected $senderId;
     protected $apiUrl;
 
     public function __construct()
     {
         $this->aCode       = config('laravel-sms.arena.acode');
         $this->apiKey      = config('laravel-sms.arena.api_key');
-        $this->maskingName = config('laravel-sms.arena.masking');
+        $this->senderId    = config('laravel-sms.arena.sender_id');
         $this->apiUrl      = config('laravel-sms.arena.url');
     }
 
@@ -35,7 +35,7 @@ class ArenaGateway implements GatewayInterface{
                 "requestID"       => uniqid(),
                 "message"         => $message,
                 "is_unicode"      => 0,
-                "masking"         => "$this->maskingName",
+                "masking"         => "$this->senderId",
                 "msisdn"          => "88" . $to,
                 "transactionType" => "T",
                 "contentID"       => ""

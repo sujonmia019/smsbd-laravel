@@ -1,22 +1,29 @@
 <?php
 
     return [
-        'gateway' => env('SMS_GATEWAY', 'twilio'),
+        'gateway' => env('SMS_GATEWAY', 'arena'),
 
         'arena' => [
-            'acode'   => env('ARENA_ACODE', ''),
-            'api_key' => env('ARENA_API_KEY', 'LaravelApp'),
-            'masking' => env('MASKING_NAME'),
-            'url'     => env('API_URL')
+            'acode'     => env('ARENA_ACODE'),
+            'api_key'   => env('API_KEY'),
+            'sender_id' => env('SENDER_ID'),
+            'url'       => env('API_URL')
+        ],
+
+        'elitbuzz' => [
+            'api_key'   => env('ELIT_API_KEY'),
+            'type'      => env('ELIT_TYPE'),
+            'sender_id' => env('SENDER_ID'),
+            'url'       => env('API_URL')
         ],
 
         'twilio' => [
-            'api_key'   => env('TWILIO_API_KEY', ''),
-            'sender_id' => env('TWILIO_SENDER_ID', 'LaravelApp'),
+            'api_key'   => env('TWILIO_API_KEY'),
+            'sender_id' => env('TWILIO_SENDER_ID'),
         ],
 
         'nexmo' => [
-            'api_key'   => env('NEXMO_API_KEY', ''),
-            'sender_id' => env('NEXMO_SENDER_ID', 'LaravelApp'),
+            'api_key'   => env('NEXMO_API_KEY'),
+            'sender_id' => env('NEXMO_SENDER_ID'),
         ],
     ];
