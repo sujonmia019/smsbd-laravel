@@ -4,19 +4,17 @@ namespace Sujon\Smsbd\Gateways;
 
 use Illuminate\Support\Facades\Http;
 
-class ElitbuzzGateway implements GatewayInterface{
+class BulkSMSBDGateway implements GatewayInterface{
 
     protected $apiKey;
-    protected $type;
     protected $senderId;
     protected $apiUrl;
 
     public function __construct()
     {
-        $this->apiKey   = config('laravel-sms.elitbuzz.api_key');
-        $this->type     = config('laravel-sms.elitbuzz.type');
-        $this->senderId = config('laravel-sms.elitbuzz.sender_id');
-        $this->apiUrl   = config('laravel-sms.elitbuzz.url');
+        $this->apiKey      = config('laravel-sms.bulksmsbd.api_key');
+        $this->senderId    = config('laravel-sms.bulksmsbd.sender_id');
+        $this->apiUrl      = config('laravel-sms.bulksmsbd.url');
     }
 
     /**
@@ -28,16 +26,16 @@ class ElitbuzzGateway implements GatewayInterface{
         return $this;
     }
 
-    public function send($to, $message){
+    public function send(string $to, string $message)
+    {
         $param = [
-            'api_key'   => $this->apiKey,
-            'type'      => $this->type,
-            'contacts'  => $to,
-            'senderid'  => $this->senderId,
-            'msg'       => $message
+            'api_key'  => $this->apiKey,
+            'number'   => $to,
+            'senderid' => $this->senderId,
+            'message'  => $message
         ];
 
-        $response = Http::asForm()->post($this->apiUrl, $param);
+        $response = Http::asForm()->post("$this->apiUrl", $param);
 
         if ($response->successful()) {
             return $response->json();

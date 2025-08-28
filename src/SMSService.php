@@ -3,6 +3,7 @@
 namespace Sujon\Smsbd;
 
 use Sujon\Smsbd\Gateways\ArenaGateway;
+use Sujon\Smsbd\Gateways\BulkSMSBDGateway;
 use Sujon\Smsbd\Gateways\TwilloGateway;
 use Sujon\Smsbd\Gateways\ElitbuzzGateway;
 use Sujon\Smsbd\Gateways\GatewayInterface;
@@ -10,6 +11,7 @@ use Sujon\Smsbd\Gateways\GatewayInterface;
 class SMSService {
 
     protected GatewayInterface $gateway;
+    protected ?string $customSender = null;
 
     public function __construct()
     {
@@ -22,6 +24,9 @@ class SMSService {
             case 'elitbuzz':
                 $this->gateway = new ElitbuzzGateway();
                 break;
+            case 'bulksmsbd':
+                $this->gateway = new BulkSMSBDGateway();
+                break;
             case 'twilio':
                 $this->gateway = new TwilloGateway();
                 break;
@@ -30,8 +35,23 @@ class SMSService {
         }
     }
 
+    /**
+     * Set sender ID dynamically if gateway supports it
+     */
+    public function sender(string $sender): self
+    {
+        $this->customSender = $sender;
+        return $this;
+    }
+
     public function send(string $to, string $message)
     {
+        $senderId = $this->customSender ?? config('laravel-sms.' . config('laravel-sms.gateway') . '.sender_id');
+
+        if (!empty($senderId) && method_exists($this->gateway, 'sender')) {
+            $this->gateway->sender($senderId);
+        }
+
         return $this->gateway->send($to, $message);
     }
 

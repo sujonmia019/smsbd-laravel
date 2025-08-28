@@ -19,6 +19,15 @@ class ArenaGateway implements GatewayInterface{
         $this->apiUrl      = config('laravel-sms.arena.url');
     }
 
+    /**
+     * Set sender ID dynamically (overrides config sender ID)
+     */
+    public function sender(string $sender): self
+    {
+        $this->senderId = $sender;
+        return $this;
+    }
+
     public function send(string $to, string $message)
     {
         $headers = [
