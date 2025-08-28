@@ -93,13 +93,11 @@ This package is open-sourced software licensed under the [MIT license](LICENSE).
 - [Sujon](https://github.com/sujonmia019) – Author & Maintainer  
 - [Laravel](https://laravel.com) – Framework used  
 
-Special thanks to the developers of the supported SMS providers (**BulkSMSBD**, **Twilio**, **Arena**, **Elitbuzz**) for their APIs.
-
 ---
 
 ## Contributing
 
-Contributions are welcome! 🎉  
+Contributions are welcome!  
 If you’d like to improve this package, please fork the repo and submit a pull request.  
 
 ---
