@@ -1,12 +1,12 @@
 <?php
 
-namespace Sujon\Smsbd;
+namespace SujonMia\Smsbd;
 
-use Sujon\Smsbd\Gateways\ArenaGateway;
-use Sujon\Smsbd\Gateways\BulkSMSBDGateway;
-use Sujon\Smsbd\Gateways\TwilloGateway;
-use Sujon\Smsbd\Gateways\ElitbuzzGateway;
-use Sujon\Smsbd\Gateways\GatewayInterface;
+use SujonMia\Smsbd\Gateways\ArenaGateway;
+use SujonMia\Smsbd\Gateways\BulkSMSBDGateway;
+use SujonMia\Smsbd\Gateways\TwilloGateway;
+use SujonMia\Smsbd\Gateways\ElitbuzzGateway;
+use SujonMia\Smsbd\Gateways\GatewayInterface;
 
 class SMSService {
 

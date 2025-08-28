@@ -40,7 +40,7 @@ It allows sending SMS using a **default sender** or a **custom sender** dynamica
 Require the package via Composer:
 
 ```bash
-composer require sujon/laravel-sms
+composer require sujonmia/laravel-sms
 ```
 
 ## Configuration
@@ -52,12 +52,12 @@ Open `config/app.php` and add the provider & alias:
 ```php
 'providers' => [
     // Other Service Providers...
-    Sujon\Smsbd\SMSServiceProvider::class,
+    SujonMia\Smsbd\SMSServiceProvider::class,
 ],
 
 'aliases' => [
     // Other Facades...
-    'Sujon' => \Sujon\Smsbd\Facades\SMS::class,
+    'SMS' => \SujonMia\Smsbd\Facades\SMS::class,
 ],
 ```
 
@@ -67,7 +67,7 @@ Open `config/app.php` and add the provider & alias:
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Sujon\Smsbd\Facades\SMS;
+use SujonMia\Smsbd\Facades\SMS;
 
 class SmsController extends Controller
 {

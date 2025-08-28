@@ -1,6 +1,6 @@
 <?php
 
-namespace Sujon\Smsbd\Facades;
+namespace SujonMia\Smsbd\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

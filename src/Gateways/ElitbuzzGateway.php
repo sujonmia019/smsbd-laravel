@@ -1,6 +1,6 @@
 <?php
 
-namespace Sujon\Smsbd\Gateways;
+namespace SujonMia\Smsbd\Gateways;
 
 use Illuminate\Support\Facades\Http;
 

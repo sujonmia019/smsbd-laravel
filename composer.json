@@ -1,10 +1,25 @@
 {
-    "name": "sujon/laravel-sms",
-    "description": "",
+    "name": "sujonmia/laravel-sms",
+    "description": "Laravel multi-provider SMS package (BulkSMSBD, Twilio, Arena, Elitbuzz)",
+    "keywords": [
+        "laravel",
+        "sms",
+        "bulk sms",
+        "twilio",
+        "arena",
+        "elitbuzz",
+        "bulksmsbd",
+        "laravel sms",
+        "sms gateway",
+        "multi provider sms",
+        "sms service",
+        "sms package",
+        "laravel package"
+    ],
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Sujon\\Smsbd\\": "src/"
+            "SujonMia\\Smsbd\\": "src/"
         }
     },
     "authors": [
@@ -16,10 +31,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Sujon\\Smsbd\\SMSServiceProvider"
+                "SujonMia\\Smsbd\\SMSServiceProvider"
             ],
             "aliases": {
-                "Sujon": "Sujon\\Smsbd\\Facades\\SMS"
+                "SMS": "SujonMia\\Smsbd\\Facades\\SMS"
             }
         }
     },

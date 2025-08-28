@@ -1,9 +1,9 @@
 <?php
 
-namespace Sujon\Smsbd\Gateways;
+namespace SujonMia\Smsbd\Gateways;
 
 interface GatewayInterface {
 
     public function send(string $to, string $message);
-    
+
 }
