@@ -16,9 +16,6 @@ It allows sending SMS using a **default sender** or a **custom sender** dynamica
 - **Default Sender Support**  
   If `sender()` is not called, the package automatically uses the `sender_id` from the config file.
 
-- **Automatic Fallback**  
-  If no sender is specified in `sender()` or config, the SMS is sent without a sender (where supported).
-
 - **Facade for Clean Syntax**  
   Use `SMS::send()` or `SMS::sender()->send()` anywhere in your Laravel app.
 

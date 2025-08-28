@@ -1,6 +1,6 @@
 <?php
 
-namespace Sujon\Smsbd;
+namespace SujonMia\Smsbd;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -10,7 +10,7 @@ class SMSServiceProvider extends ServiceProvider {
      * Register any package services.
      */
     public function register(): void
-    {  
+    {
         $this->app->singleton('sms', function () {
             return new SMSService();
         });
