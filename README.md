@@ -97,4 +97,3 @@ This package is open-sourced software licensed under the [MIT license](LICENSE).
 Contributions are welcome!  
 If you’d like to improve this package, please fork the repo and submit a pull request.  
 
----
