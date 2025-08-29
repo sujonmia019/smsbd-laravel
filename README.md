@@ -151,8 +151,8 @@ $logs = SmsLog::where('status', 'sent')->latest()->get();
 |----|-------------|---------------------|-----------------------------------------|--------|----------------|------------|
 | 1  | 017XXXXXXXX | Your OTP is 123456  | SujonMia\Smsbd\Gateways\TwilioGatewa    | sent   | {…} JSON Data  | 2025-08-30 |
 | 2  | 018XXXXXXXX | Promo: 50% OFF      | SujonMia\Smsbd\Gateways\ArenaGatewa     | failed | Error Message  | 2025-08-30 |
-| 3  | 016XXXXXXXX | Your appointment..  | SujonMia\Smsbd\Gateways\ElitbuzzGatewa  | sent   | Error Message  | 2025-08-30 |
-| 3  | 015XXXXXXXX | Thank you..         | SujonMia\Smsbd\Gateways\BulkSMSBDGatewa | sent   | Error Message  | 2025-08-30 |
+| 3  | 016XXXXXXXX | Your appointment..  | SujonMia\Smsbd\Gateways\ElitbuzzGatewa  | sent   | {…} JSON Data  | 2025-08-30 |
+| 3  | 015XXXXXXXX | Thank you..         | SujonMia\Smsbd\Gateways\BulkSMSBDGatewa | failed | Error Message  | 2025-08-30 |
 
 
 ## License
