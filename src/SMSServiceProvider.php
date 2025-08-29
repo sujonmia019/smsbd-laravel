@@ -29,6 +29,14 @@ class SMSServiceProvider extends ServiceProvider {
         $this->publishes([
             __DIR__.'/../config/laravel-sms.php' => config_path('laravel-sms.php'),
         ], 'config');
+
+        $this->publishes([
+            __DIR__.'/../database/migrations/2025_08_01_000000_create_sms_logs_table.php' =>
+                database_path("migrations/2025_08_01_000000_create_sms_logs_table.php"),
+        ], 'migrations');
+
+
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
 }

@@ -12,12 +12,16 @@ class TwilloGateway implements GatewayInterface {
 
     public function __construct()
     {
-        $this->sid      = config('laravel-sms.twilio.sid');
-        $this->token    = config('laravel-sms.twilio.token');
-        $this->senderId = config('laravel-sms.twilio.sender_id');
+        $this->sid      = config('laravel-sms.gateways.twilio.sid');
+        $this->token    = config('laravel-sms.gateways.twilio.token');
+        $this->senderId = config('laravel-sms.gateways.twilio.sender_id');
     }
 
     public function send($to, $message){
+        if (empty($this->sid) || empty($this->token) || empty($this->senderId)) {
+            throw new \Exception("Twilio credentials or sender ID are missing.");
+        }
+
         $response = Http::withBasicAuth($this->sid, $this->token)
             ->asForm()
             ->post("https://api.twilio.com/2010-04-01/Accounts/{$this->sid}/Messages.json", [
@@ -26,15 +30,16 @@ class TwilloGateway implements GatewayInterface {
                 'Body' => $message,
             ]);
 
-        if ($response->successful()) {
-            return $response->json();
-        } else {
+        if (!$response->successful()) {
             return [
                 'error'   => true,
                 'status'  => $response->status(),
                 'message' => $response->body()
             ];
+
         }
+
+        return $response->json();
     }
 
 }

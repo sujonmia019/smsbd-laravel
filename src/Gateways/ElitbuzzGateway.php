@@ -13,12 +13,12 @@ class ElitbuzzGateway implements GatewayInterface{
 
     public function __construct()
     {
-        $this->apiKey   = config('laravel-sms.elitbuzz.api_key');
-        $this->type     = config('laravel-sms.elitbuzz.type');
-        $this->senderId = config('laravel-sms.elitbuzz.sender_id');
-        $this->apiUrl   = config('laravel-sms.elitbuzz.url');
+        $this->apiKey   = config('laravel-sms.gateways.elitbuzz.api_key');
+        $this->type     = config('laravel-sms.gateways.elitbuzz.type');
+        $this->senderId = config('laravel-sms.gateways.elitbuzz.sender_id');
+        $this->apiUrl   = config('laravel-sms.gateways.elitbuzz.url');
     }
-
+        
     /**
      * Set sender ID dynamically (overrides config sender ID)
      */
@@ -29,6 +29,10 @@ class ElitbuzzGateway implements GatewayInterface{
     }
 
     public function send($to, $message){
+        if (empty($this->apiKey) || empty($this->type) || empty($this->senderId) || empty($this->apiUrl)) {
+            throw new \Exception("Elitbuzz credentials or sender ID are missing.");
+        }
+
         $param = [
             'api_key'   => $this->apiKey,
             'type'      => $this->type,

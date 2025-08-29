@@ -12,9 +12,9 @@ class BulkSMSBDGateway implements GatewayInterface{
 
     public function __construct()
     {
-        $this->apiKey      = config('laravel-sms.bulksmsbd.api_key');
-        $this->senderId    = config('laravel-sms.bulksmsbd.sender_id');
-        $this->apiUrl      = config('laravel-sms.bulksmsbd.url');
+        $this->apiKey      = config('laravel-sms.gateways.bulksmsbd.api_key');
+        $this->senderId    = config('laravel-sms.gateways.bulksmsbd.sender_id');
+        $this->apiUrl      = config('laravel-sms.gateways.bulksmsbd.url');
     }
 
     /**
@@ -28,6 +28,10 @@ class BulkSMSBDGateway implements GatewayInterface{
 
     public function send(string $to, string $message)
     {
+        if (empty($this->apiKey) || empty($this->senderId) || empty($this->apiUrl)) {
+            throw new \Exception("BulkSMSBD credentials or sender ID are missing.");
+        }
+
         $param = [
             'api_key'  => $this->apiKey,
             'number'   => $to,

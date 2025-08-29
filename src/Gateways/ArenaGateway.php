@@ -4,8 +4,8 @@ namespace SujonMia\Smsbd\Gateways;
 
 use Illuminate\Support\Facades\Http;
 
-class ArenaGateway implements GatewayInterface{
-
+class ArenaGateway implements GatewayInterface
+{  
     protected $aCode;
     protected $apiKey;
     protected $senderId;
@@ -13,14 +13,14 @@ class ArenaGateway implements GatewayInterface{
 
     public function __construct()
     {
-        $this->aCode       = config('laravel-sms.arena.acode');
-        $this->apiKey      = config('laravel-sms.arena.api_key');
-        $this->senderId    = config('laravel-sms.arena.sender_id');
-        $this->apiUrl      = config('laravel-sms.arena.url');
+        $this->aCode    = config('laravel-sms.gateways.arena.acode');
+        $this->apiKey   = config('laravel-sms.gateways.arena.api_key');
+        $this->senderId = config('laravel-sms.gateways.arena.sender_id');
+        $this->apiUrl   = config('laravel-sms.gateways.arena.url');
     }
 
     /**
-     * Set sender ID dynamically (overrides config sender ID)
+     * Override sender dynamically
      */
     public function sender(string $sender): self
     {
@@ -30,6 +30,10 @@ class ArenaGateway implements GatewayInterface{
 
     public function send(string $to, string $message)
     {
+        if (empty($this->aCode) || empty($this->apiKey) || empty($this->senderId) || empty($this->apiUrl)) {
+            throw new \Exception("Arena credentials or sender ID are missing.");
+        }
+
         $headers = [
             'Content-Type'     => 'application/json',
             'X-Requested-With' => 'XMLHttpRequest',
@@ -44,15 +48,15 @@ class ArenaGateway implements GatewayInterface{
                 "requestID"       => uniqid(),
                 "message"         => $message,
                 "is_unicode"      => 0,
-                "masking"         => "$this->senderId",
-                "msisdn"          => "88" . $to,
+                "masking"         => $this->senderId,
+                "msisdn"          => ltrim($to, '+'), // avoid double 88
                 "transactionType" => "T",
                 "contentID"       => ""
             ]
         ];
 
         $response = Http::withHeaders($headers)
-            ->post("$this->apiUrl", $body);
+            ->post($this->apiUrl, $body);
 
         if ($response->successful()) {
             return $response->json();
@@ -64,5 +68,6 @@ class ArenaGateway implements GatewayInterface{
             ];
         }
     }
-
 }
+
+
