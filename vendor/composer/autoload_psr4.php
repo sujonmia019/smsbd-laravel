@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Development\\SendSmsPackage\\' => array($baseDir . '/src'),
+    'SujonMia\\Smsbd\\' => array($baseDir . '/src'),
 );
