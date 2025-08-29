@@ -79,7 +79,7 @@ php artisan vendor:publish --provider="SujonMia\Smsbd\SMSServiceProvider"
 php artisan migrate
 ```
 
-### 3. Add Environment Variables
+### 3. Add Single Provider or All Provider Environment Variables
 ```php
 # Default provider
 SMS_GATEWAY=arena
