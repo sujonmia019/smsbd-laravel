@@ -40,7 +40,7 @@ It allows sending SMS using a **default sender** or a **custom sender** dynamica
   All gateway credentials, URLs, and sender IDs are configurable via `config/laravel-sms.php`.
 
 - **Error Handling**
-  Exceptions thrown on missing credentials or failed response
+  Exceptions thrown on missing credentials or failed response.
 
 - **Composer Installable**  
   Package can be installed via Composer and integrated seamlessly with Laravel.
